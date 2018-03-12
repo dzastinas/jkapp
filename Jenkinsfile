@@ -10,7 +10,7 @@ pipeline {
       parallel {
         stage('Test') {
           steps {
-            sh './gradlew check'
+            sh './gradlew clean check'
           }
         }
         stage('Publish tests') {
