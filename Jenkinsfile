@@ -3,14 +3,14 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Building..'
+        sh './gradlew assemble'
       }
     }
     stage('Test') {
       parallel {
         stage('Test') {
           steps {
-            echo 'Testing..'
+            sh './gradlew check'
           }
         }
         stage('Publish tests') {
