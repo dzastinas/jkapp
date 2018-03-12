@@ -7,8 +7,17 @@ pipeline {
       }
     }
     stage('Test') {
-      steps {
-        echo 'Testing..'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing..'
+          }
+        }
+        stage('Publish tests') {
+          steps {
+            junit 'build/reports/**/*.xml'
+          }
+        }
       }
     }
     stage('Deploy') {
